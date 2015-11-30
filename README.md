@@ -141,5 +141,5 @@ Called when user select/deselect a date. The returned data is { date: 'yyyy/mm/d
 
 ## Questions or suggestions?
 
-Feel free to [open an issue](https://github.com/chymtt/ReactNativeCalendarAndroid/issues)
+Feel free to [open an issue](https://github.com/chymtt/ReactNativeCalendarAndroid/issues)  
 [Pull requests](https://github.com/chymtt/ReactNativeCalendarAndroid/pulls) are also welcome
