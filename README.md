@@ -2,6 +2,8 @@
 
 A simple material-themed calendar for react native android
 
+<img src="https://dl.dropboxusercontent.com/u/20911725/Screenshots/Screencast-2015.12.01-00.32.gif" alt="Demo Screen Capture" width="300px" />
+
 ## Installation Android
 1. `npm install --save react-native-calendar-android`
 2. In `android/setting.gradle`
