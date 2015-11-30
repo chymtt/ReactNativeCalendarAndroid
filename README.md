@@ -133,7 +133,7 @@ Set the color of the selection circle. Should be a color in the format #RRGGBB o
 
 ### array selectedDates
 
-An array of dates in the format ```yyyy/mm/dd`` or timestamp. Set the selected dates on the calendar.
+An array of dates in the format ```yyyy/mm/dd``` or timestamp. Set the selected dates on the calendar.
 
 ## Event
 
@@ -145,3 +145,7 @@ Called when user select/deselect a date. The returned data is { date: 'yyyy/mm/d
 
 Feel free to [open an issue](https://github.com/chymtt/ReactNativeCalendarAndroid/issues)  
 [Pull requests](https://github.com/chymtt/ReactNativeCalendarAndroid/pulls) are also welcome
+
+## Credit
+
+Big thanks to @prolificinteractive for their awesome [Material Calendar View](https://github.com/prolificinteractive/material-calendarview)
