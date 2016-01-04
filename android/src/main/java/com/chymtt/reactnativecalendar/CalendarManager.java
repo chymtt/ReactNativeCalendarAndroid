@@ -158,7 +158,7 @@ public class CalendarManager extends SimpleViewManager<Calendar> {
 
     @ReactProp(name = "selectedDates")
     public void setSelectedDates(Calendar view, ReadableArray dates) {
-        ArrayList<Date> selectedDates = new ArrayList<>();
+        ArrayList<Date> selectedDates = new ArrayList<Date>();
         for (int i = 0; i < dates.size(); i++) {
             String type = dates.getType(i).name();
             if ("String".equals(type)) {
