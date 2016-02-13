@@ -1,6 +1,6 @@
 {
   "name": "react-native-calendar-android",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "A simple material-themed calendar for react native android",
   "main": "src/Calendar.js",
   "repository": {
@@ -15,9 +15,6 @@
     "material-design",
     "calendar"
   ],
-  "peerDependencies": {
-    "react-native": ">=0.15.0"
-  },
   "author": "Do Anh Tu <chymtt@gmail.com>",
   "license": "MIT",
   "bugs": {

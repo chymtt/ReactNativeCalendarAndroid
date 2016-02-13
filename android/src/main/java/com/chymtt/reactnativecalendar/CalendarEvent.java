@@ -33,7 +33,6 @@ public class CalendarEvent extends Event<CalendarEvent>{
     }
 
     public String getDate() {
-        Log.d("LOLOL", dateFormat.format(date.getDate()));
         return dateFormat.format(date.getDate());
     }
 
