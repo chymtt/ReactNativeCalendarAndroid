@@ -8,52 +8,72 @@ A simple material-themed calendar for react native android
 1. `npm install --save react-native-calendar-android`
 2. In `android/setting.gradle`
 
-```gradle
-...
-include ':ReactNativeCalendarAndroid', ':app'
-project(':ReactNativeCalendarAndroid').projectDir = new File(rootProject.projectDir, '../node_modules/react-native-calendar-android/android')
-```
+    ```gradle
+    ...
+    include ':ReactNativeCalendarAndroid', ':app'
+    project(':ReactNativeCalendarAndroid').projectDir = new File(rootProject.projectDir, '../node_modules/react-native-calendar-android/android')
+    ```
 
 3. In `android/app/build.gradle`
 
-```gradle
-...
-dependencies {
+    ```gradle
     ...
-    compile project(':ReactNativeCalendarAndroid')
-}
-```
+    dependencies {
+        ...
+        compile project(':ReactNativeCalendarAndroid')
+    }
+    ```
+    
+4. Register module (in MainActivity.java)
 
-4. register module (in MainActivity.java)
-
-```java
-import com.chymtt.reactnativecalendar.CalendarPackage; // <----- import
-
-public class MainActivity extends Activity implements DefaultHardwareBackBtnHandler {
-  ......
-
-  @Override
-  protected void onCreate(Bundle savedInstanceState) {
-    super.onCreate(savedInstanceState);
-    mReactRootView = new ReactRootView(this);
-
-    mReactInstanceManager = ReactInstanceManager.builder()
-      .setApplication(getApplication())
-      .setBundleAssetName("index.android.bundle")
-      .setJSMainModuleName("index.android")
-      .addPackage(new MainReactPackage())
-      .addPackage(new CalendarPackage())              // <------ add here
-      .setUseDeveloperSupport(BuildConfig.DEBUG)
-      .setInitialLifecycleState(LifecycleState.RESUMED)
-      .build();
-
-    mReactRootView.startReactApplication(mReactInstanceManager, "ExampleRN", null);
-
-    setContentView(mReactRootView);
-  }
-  ......
-}
-```
+    4.1. With RN < 0.19.0
+    
+        ```java
+        import com.chymtt.reactnativecalendar.CalendarPackage; // <----- import
+        
+        public class MainActivity extends Activity implements DefaultHardwareBackBtnHandler {
+          ......
+        
+          @Override
+          protected void onCreate(Bundle savedInstanceState) {
+            super.onCreate(savedInstanceState);
+            mReactRootView = new ReactRootView(this);
+        
+            mReactInstanceManager = ReactInstanceManager.builder()
+              .setApplication(getApplication())
+              .setBundleAssetName("index.android.bundle")
+              .setJSMainModuleName("index.android")
+              .addPackage(new MainReactPackage())
+              .addPackage(new CalendarPackage())              // <------ add here
+              .setUseDeveloperSupport(BuildConfig.DEBUG)
+              .setInitialLifecycleState(LifecycleState.RESUMED)
+              .build();
+        
+            mReactRootView.startReactApplication(mReactInstanceManager, "ExampleRN", null);
+        
+            setContentView(mReactRootView);
+          }
+          ......
+        }
+        ```
+    
+    4.2. With RN >= 0.19.0
+    
+        ```java
+        import com.chymtt.reactnativecalendar.CalendarPackage; // <----- import
+        
+        public class MainActivity extends ReactActivity {
+            ...
+            
+            @Override
+            protected List<ReactPackage> getPackages() {
+              return Arrays.<ReactPackage>asList(
+                new MainReactPackage(),
+                new CalendarPackage() // <------ add here
+              );
+            }
+        }
+        ```
 
 ## Usage
 
