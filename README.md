@@ -9,7 +9,7 @@ A simple material-themed calendar for react native android
 
 _Note_: Since react-native-calendar-android@0.0.3, you should use react-native@0.19.0 and above
 
-2. In `android/setting.gradle`
+2. In `android/settings.gradle`
 
     ```gradle
     ...
