@@ -1,7 +1,8 @@
 'use strict';
 
-var React = require('react-native');
-var { requireNativeComponent, PropTypes, View } = React;
+var React = require('react');
+var ReactNative = require('react-native');
+var { requireNativeComponent, PropTypes, View } = ReactNative;
 
 var NativeCalendar = requireNativeComponent('CalendarAndroid', Calendar);
 
