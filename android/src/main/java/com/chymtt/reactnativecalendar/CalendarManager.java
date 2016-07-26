@@ -2,6 +2,7 @@ package com.chymtt.reactnativecalendar;
 
 import android.graphics.Color;
 import android.os.SystemClock;
+import android.util.Log;
 
 import com.facebook.react.bridge.JSApplicationIllegalArgumentException;
 import com.facebook.react.bridge.ReadableArray;
@@ -94,7 +95,9 @@ public class CalendarManager extends SimpleViewManager<Calendar> {
     @ReactProp(name = "firstDayOfWeek")
     public void setFirstDayOfWeek(Calendar view, String firstDayOfWeek) {
         if (firstDayOfWeek != null) {
-            view.setFirstDayOfWeek(getFirstDayOfWeekFromString(firstDayOfWeek));
+            view.state().edit()
+                    .setFirstDayOfWeek(getFirstDayOfWeekFromString(firstDayOfWeek))
+                    .commit();
         }
     }
 
