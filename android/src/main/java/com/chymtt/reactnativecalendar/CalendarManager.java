@@ -2,7 +2,6 @@ package com.chymtt.reactnativecalendar;
 
 import android.graphics.Color;
 import android.os.SystemClock;
-import android.util.Log;
 
 import com.facebook.react.bridge.JSApplicationIllegalArgumentException;
 import com.facebook.react.bridge.ReadableArray;
@@ -133,6 +132,62 @@ public class CalendarManager extends SimpleViewManager<Calendar> {
         }
     }
 
+    @ReactProp(name = "minimumDate")
+    public void setMinimumDate(Calendar view, ReadableArray data) {
+        String type = data.getType(0).name();
+        if ("String".equals(type)) {
+            try {
+                Date date = dateFormat.parse(data.getString(0));
+                if (shouldUpdateMinMaxDate(view.getMinimumDate(), date)) {
+                    view.state().edit()
+                            .setMinimumDate(date)
+                            .commit();
+                }
+            } catch (ParseException e) {
+                throw new JSApplicationIllegalArgumentException("Invalid date format: " + data.getString(0));
+            }
+        } else if ("Number".equals(type)) {
+            Double value = data.getDouble(0);
+            Date date = new Date(value.longValue());
+            if (shouldUpdateMinMaxDate(view.getMinimumDate(), date)) {
+                view.state().edit()
+                        .setMinimumDate(date)
+                        .commit();
+            }
+        } else {
+            throw new JSApplicationIllegalArgumentException("Invalid date format: " + data.getString(0));
+        }
+    }
+
+    @ReactProp(name = "maximumDate")
+    public void setMaximumDate(Calendar view, ReadableArray data) {
+        String type = data.getType(0).name();
+
+        if ("String".equals(type)) {
+            try {
+                Date date = dateFormat.parse(data.getString(0));
+                if (shouldUpdateMinMaxDate(view.getMaximumDate(), date)) {
+                    view.state().edit()
+                            .setMaximumDate(date)
+                            .commit();
+                }
+            } catch (ParseException e) {
+                throw new JSApplicationIllegalArgumentException("Invalid date format: " + data.getString(0));
+            }
+        } else if ("Number".equals(type)) {
+            Double value = data.getDouble(0);
+            Date date = new Date(value.longValue());
+
+            if (shouldUpdateMinMaxDate(view.getMaximumDate(), date)) {
+                view.state().edit()
+                        .setMaximumDate(date)
+                        .commit();
+            }
+        } else {
+            throw new JSApplicationIllegalArgumentException("Invalid date format: " + data.getString(0));
+        }
+    }
+
     @ReactProp(name = "selectionMode")
     public void setSelectionMode(Calendar view, String mode) {
         if (mode != null) {
@@ -202,5 +257,27 @@ public class CalendarManager extends SimpleViewManager<Calendar> {
         } else {
             throw new JSApplicationIllegalArgumentException("Unknown firstDayOfWeek property: " + firstDayOfWeek);
         }
+    }
+
+    /**
+     * Should update new value of minimum or maximum date
+     *
+     * Check if the new min or max date is different from the previous one, if yes we update otherwise we don't.
+     *
+     * @param minMaxDate
+     * @param newDate
+     * @return boolean
+     */
+    private boolean shouldUpdateMinMaxDate(CalendarDay minMaxDate, Date newDate) {
+        if (minMaxDate == null) {
+            return true;
+        }
+
+        java.util.Calendar newDateCalendar = java.util.Calendar.getInstance();
+        newDateCalendar.setTimeInMillis(newDate.getTime());
+
+        return (minMaxDate.getYear() != newDateCalendar.get(java.util.Calendar.YEAR) &&
+                minMaxDate.getMonth() != newDateCalendar.get(java.util.Calendar.MONTH) &&
+                minMaxDate.getDay() != newDateCalendar.get(java.util.Calendar.DAY_OF_MONTH));
     }
 }
