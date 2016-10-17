@@ -68,7 +68,6 @@ public class CalendarManager extends SimpleViewManager<Calendar> {
                 reactContext.getNativeModule(UIManagerModule.class).getEventDispatcher()
                         .dispatchEvent(new CalendarEvent(
                                 view.getId(),
-                                SystemClock.uptimeMillis(),
                                 date,
                                 selected));
             }

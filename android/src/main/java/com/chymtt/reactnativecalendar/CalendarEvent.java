@@ -26,8 +26,8 @@ public class CalendarEvent extends Event<CalendarEvent>{
     private final CalendarDay date;
     private final boolean selected;
 
-    public CalendarEvent(int viewId, long timestampMs, CalendarDay date, boolean selected) {
-        super(viewId, timestampMs);
+    public CalendarEvent(int viewId, CalendarDay date, boolean selected) {
+        super(viewId);
         this.date = date;
         this.selected = selected;
     }
